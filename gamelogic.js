@@ -21,9 +21,8 @@ return displayedWord;
 
 function isGameWon(word, guesses) {
   for (let i = 0; i < word.length; i++) {
-    let singleLetter = word[i];
 // als een enkele letter van het woord NIET voorkomt in guesses, dan return false, anders true.
-    if (!guesses.includes(singleLetter)) {
+    if (!guesses.includes(word[i])) {
       return false;
     } else {
       return true;
@@ -32,7 +31,20 @@ function isGameWon(word, guesses) {
 }
 
 function isGameLost(word, guesses) {
-  // WRITE ME
+  // teller verkeerde letters aanmaken
+  let wrongGuesses = 0;
+  // als guesses[i] niet voorkomt in word, dan wrongguesses ++
+  for (let i = 0; i < guesses.length; i++) {
+    if(!word.includes(guesses[i])){
+      wrongGuesses ++;
+    }
+  }
+  // als teller groter dan of gelijk aan 7 is dan return true, else false
+  if (wrongGuesses >= 7){
+    return true;
+  } else {
+    return false;
+  }
 }
 
 module.exports = {
