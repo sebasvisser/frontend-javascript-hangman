@@ -1,5 +1,9 @@
 function displayWordSoFar(word, guesses) {
-  // WRITE ME
+  let displayedWord = "";
+  for (let i = 0; i < word.length; i++) {
+    displayedWord =displayedWord + ("_ ");
+  }
+return displayedWord;
 }
 
 function isGameWon(word, guesses) {
