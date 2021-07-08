@@ -20,15 +20,17 @@ return displayedWord;
 }
 
 function isGameWon(word, guesses) {
+  let gameWon = false;
   for (let i = 0; i < word.length; i++) {
 // als een enkele letter van het woord (word[i])
 // NIET voorkomt in guesses, dan return false, anders true.
     if (!guesses.includes(word[i])) {
-      return false;
+      gameWon = false;
     } else {
-      return true;
+      gameWon = true;
     }
   }
+  return gameWon;
 }
 
 function isGameLost(word, guesses) {
