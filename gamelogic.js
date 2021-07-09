@@ -7,7 +7,7 @@ function displayWordSoFar(word, guesses) {
   for (let i = 0; i < splitWord.length; i++) {
 // als in de geraden letters de huidige letter zit, dan...
     if (guesses.includes(splitWord[i])){
-// huidige letter stoppen in verzamelvariabele met extra spatie
+// huidige letter stoppen in verzamel-variabele met extra spatie
       displayedWord = displayedWord + splitWord[i] + " ";
 //als in guesses geen letter zit die overeenkomt met huidige letter
     } else {
@@ -19,18 +19,15 @@ function displayWordSoFar(word, guesses) {
 return displayedWord;
 }
 
-function isGameWon(word, guesses) {
-  let gameWon = false;
-  for (let i = 0; i < word.length; i++) {
 // als een enkele letter van het woord (word[i])
 // NIET voorkomt in guesses, dan return false, anders true.
+function isGameWon(word, guesses) {
+  for (let i = 0; i < word.length; i++) {
     if (!guesses.includes(word[i])) {
-      gameWon = false;
-    } else {
-      gameWon = true;
+      return false;
     }
   }
-  return gameWon;
+  return true;
 }
 
 function isGameLost(word, guesses) {
@@ -42,7 +39,6 @@ function isGameLost(word, guesses) {
       wrongGuesses ++;
     }
   }
-
   switch (wrongGuesses) {
     case 0:
       console.log("\n" +

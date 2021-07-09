@@ -8,32 +8,30 @@ function game(word, guesses) {
 
   const letter = question("Raad een letter: ");
 // controle of input 1 character lang is => anders boos worden
-    if(letter.length === 1) {
+  if(letter.length === 1) {
 // voeg de geraden letter toe aan de array met guesses,
 // waarbij letter is omgezet naar lowercase.
   guesses.push(letter.toLowerCase());
-    } else {
-      const failGraphic = "   _______________                        |*\\_/*|________\n" +
-      "  |  ___________  |     .-.     .-.      ||_/-\\_|______  |\n" +
-      "  | |           | |    .****. .****.     | |           | |\n" +
-      "  | |   0   0   | |    .*****.*****.     | |   0   0   | |\n" +
-      "  | |     -     | |     .*********.      | |     -     | |\n" +
-      "  | |   \\___/   | |      .*******.       | |   \\___/   | |\n" +
-      "  | |___     ___| |       .*****.        | |___________| |\n" +
-      "  |_____|\\_/|_____|        .***.         |_______________|\n" +
-      "    _|__|/ \\|_|_.............*.............._|________|_\n" +
-      "   / ********** \\                          / ********** \\\n" +
-      " /  ************  \\                      /  ************  \\\n" +
-      "--------------------                    --------------------";
-      console.log(failGraphic);
-      console.log(" You had one task..1 letter invoeren. Hoe moeilijk kan het zijn?");
-      console.log(" Doeidoei. We beginnen voor straf HELEMAAL OPNIEUW!");
-      game("javascript", []);
-    }
+    } else { //  indien meerdere letters ingevoerd, afstraffen! ;P
+        const failGraphic = "   _______________                        |*\\_/*|________\n" +
+        "  |  ___________  |     .-.     .-.      ||_/-\\_|______  |\n" +
+        "  | |           | |    .****. .****.     | |           | |\n" +
+        "  | |   0   0   | |    .*****.*****.     | |   0   0   | |\n" +
+        "  | |     -     | |     .*********.      | |     -     | |\n" +
+        "  | |   \\___/   | |      .*******.       | |   \\___/   | |\n" +
+        "  | |___     ___| |       .*****.        | |___________| |\n" +
+        "  |_____|\\_/|_____|        .***.         |_______________|\n" +
+        "    _|__|/ \\|_|_.............*.............._|________|_\n" +
+        "   / ********** \\                          / ********** \\\n" +
+        " /  ************  \\                      /  ************  \\\n" +
+        "--------------------                    --------------------";
+        console.log(failGraphic);
+        console.log(" You had one task..1 letter invoeren. Hoe moeilijk kan het zijn?");
+        console.log(" Doeidoei. We beginnen voor straf HELEMAAL OPNIEUW!");
+        game(word, []);
+      }
 
-// netjes bovenaan het console scherm beginnen na het invoeren van je letter
-  console.clear();
-  const attempts = guesses.length + 1;
+  const attempts = guesses.length + 1; //pogingen tellen
   console.log(" ========== Poging " + attempts +  " ==========")
 // laat zien hoe het woord er tot nu toe uitziet
   console.log("Het te raden woord: " + displayWordSoFar(word, guesses));
