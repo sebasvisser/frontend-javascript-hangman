@@ -42,12 +42,87 @@ function isGameLost(word, guesses) {
       wrongGuesses ++;
     }
   }
-// als teller groter dan of gelijk aan 7 is dan return true, else false
-  if (wrongGuesses >= 7){
-    return true;
-  } else {
-    return false;
-  }
+
+  switch (wrongGuesses) {
+    case 0:
+      console.log("\n" +
+          "\n" +
+          "\n" +
+          "\n" +
+          "\n" +
+          "\n" +
+          "\n" + " Nog geen fouten gemaakt!");
+      return false;
+
+    case 1:
+      console.log("|\n" +
+          "|\n" +
+          "|\n" +
+          "|\n" +
+          "|\n" +
+          "===========" + " Pas 1 fout gemaakt, maar 1 fout is geen fout ;)");
+      return false;
+
+    case 2:
+      console.log("___\n" +
+          "| /\n" +
+          "|/\n" +
+          "|\n" +
+          "|\n" +
+          "|\n" +
+          "===========" + " Pas 2 fouten gemaakt, kan gebeuren...");
+      return false;
+
+    case 3:
+      console.log("__________\n" +
+          "| /\n" +
+          "|/\n" +
+          "|\n" +
+          "|\n" +
+          "|\n" +
+          "===========" + " Pas 3 fouten gemaakt, geen stress, je hebt het onder controle.");
+      return false;
+
+    case 4:
+      console.log("__________\n" +
+          "| /     |\n" +
+          "|/      o\n" +
+          "|\n" +
+          "|\n" +
+          "|\n" +
+          "===========" + " Pas 4 fouten gemaakt, geen nood, alles kan nog.");
+      return false;
+
+    case 5:
+      console.log("__________\n" +
+          "| /     |\n" +
+          "|/     _o_\n" +
+          "|\n" +
+          "|\n" +
+          "|\n" +
+          "===========" + " Al 5 fouten gemaakt...nu komt het er op aan!");
+      return false;
+
+    case 6:
+      console.log("__________\n" +
+          "| /     |\n" +
+          "|/     _o_\n" +
+          "|       O\n" +
+          "|\n" +
+          "|\n" +
+          "===========" + " Al 6 fouten gemaakt, bij de volgende fout ben je af!");
+      return false;
+
+    default:
+      console.log("__________\n" +
+          "| /     |\n" +
+          "|/     _o_\n" +
+          "|       O\n" +
+          "|      / \\\n" +
+          "|\n" +
+          "===========" + " Je hangt, jammer. Je hebt verloren!");
+      return true;
+    }
 }
 
 module.exports = {

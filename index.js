@@ -3,7 +3,7 @@ const { displayWordSoFar, isGameWon, isGameLost } = require("./gamelogic");
 
 function game(word, guesses) {
   if (guesses.length != 0) {
-    console.log("Dit heb je tot nu toe geraden: ", guesses);
+    console.log("Deze letters heb je al geprobeerd: ", guesses);
   }
 
   const letter = question("Raad een letter: ");
@@ -27,11 +27,16 @@ function game(word, guesses) {
       "--------------------                    --------------------";
       console.log(failGraphic);
       console.log(" You had one task..1 letter invoeren. Hoe moeilijk kan het zijn?");
-      console.log("Doeidoei. We beginnen voor straf HELEMAAL OPNIEUW!");
+      console.log(" Doeidoei. We beginnen voor straf HELEMAAL OPNIEUW!");
       game("javascript", []);
     }
+
+// netjes bovenaan het console scherm beginnen na het invoeren van je letter
+  console.clear();
+  const attempts = guesses.length + 1;
+  console.log(" ========== Poging " + attempts +  " ==========")
 // laat zien hoe het woord er tot nu toe uitziet
-  console.log(displayWordSoFar(word, guesses));
+  console.log("Het te raden woord: " + displayWordSoFar(word, guesses));
 
 // als gewonnen => display gewonnen
 // verloren => display verloren
