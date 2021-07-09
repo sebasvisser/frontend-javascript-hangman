@@ -16,6 +16,7 @@ function displayWordSoFar(word, guesses) {
     }
   }
 // verzamel variabele teruggeven
+  // als string ivm fijner in console.log
 return displayedWord;
 }
 
