@@ -1,7 +1,6 @@
 const { question } = require("readline-sync");
 const { displayWordSoFar, isGameWon, isGameLost } = require("./gamelogic");
 
-console.clear(); // bovenaan beginnen met een lege terminal
 function game(word, guesses) {
   if (guesses.length !== 0) {
       const guessesSoFar = guesses.toString();
@@ -28,16 +27,14 @@ function game(word, guesses) {
         "   / ********** \\                          / ********** \\\n" +
         " /  ************  \\                      /  ************  \\\n" +
         "--------------------                    --------------------";
-        console.clear();
         console.log(failGraphic);
         console.log(" You had one task..1 letter invoeren. Hoe moeilijk kan het zijn?");
         console.log(" Doei doei. We beginnen voor straf HELEMAAL OPNIEUW!");
         game(word, []);
       }
 
-    console.clear(); // console opruimen bij nieuwe poging
     const attempts = guesses.length + 1; //pogingen tellen
-  console.log(" ========== Poging " + attempts +  " ==========")
+    console.log(" ========== Poging " + attempts +  " ==========")
 // laat zien hoe het woord er tot nu toe uitziet
     console.log("Het te raden woord: " + displayWordSoFar(word, guesses));
 

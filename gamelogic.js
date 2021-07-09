@@ -34,6 +34,7 @@ function isGameWon(word, guesses) {
 function isGameLost(word, guesses) {
 // teller verkeerde letters aanmaken
   let wrongGuesses = 0;
+  let gameLost ;
 // als guesses[i] NIET voorkomt in word, dan wrongGuesses ++
   for (let i = 0; i < guesses.length; i++) {
     if(!word.includes(guesses[i])){
@@ -49,7 +50,8 @@ function isGameLost(word, guesses) {
           "\n" +
           "\n" +
           "\n" + " Nog geen fouten gemaakt!");
-      return false;
+      gameLost = false;
+      break;
 
     case 1:
       console.log("|\n" +
@@ -58,7 +60,8 @@ function isGameLost(word, guesses) {
           "|\n" +
           "|\n" +
           "===========" + " Pas 1 fout gemaakt, maar 1 fout is geen fout ;)");
-      return false;
+      gameLost = false;
+      break;
 
     case 2:
       console.log("___\n" +
@@ -68,7 +71,8 @@ function isGameLost(word, guesses) {
           "|\n" +
           "|\n" +
           "===========" + " Pas 2 fouten gemaakt, kan gebeuren...");
-      return false;
+      gameLost = false;
+      break;
 
     case 3:
       console.log("__________\n" +
@@ -78,7 +82,8 @@ function isGameLost(word, guesses) {
           "|\n" +
           "|\n" +
           "===========" + " Pas 3 fouten gemaakt, geen stress, je hebt het onder controle.");
-      return false;
+      gameLost = false;
+      break;
 
     case 4:
       console.log("__________\n" +
@@ -88,7 +93,8 @@ function isGameLost(word, guesses) {
           "|\n" +
           "|\n" +
           "===========" + " Pas 4 fouten gemaakt, geen nood, alles kan nog.");
-      return false;
+      gameLost = false;
+      break;
 
     case 5:
       console.log("__________\n" +
@@ -98,7 +104,8 @@ function isGameLost(word, guesses) {
           "|\n" +
           "|\n" +
           "===========" + " Al 5 fouten gemaakt...nu komt het er op aan!");
-      return false;
+      gameLost = false;
+      break;
 
     case 6:
       console.log("__________\n" +
@@ -108,7 +115,8 @@ function isGameLost(word, guesses) {
           "|\n" +
           "|\n" +
           "===========" + " Al 6 fouten gemaakt, bij de volgende fout ben je af!");
-      return false;
+      gameLost = false;
+      break;
 
     default:
       console.log("__________\n" +
@@ -118,8 +126,10 @@ function isGameLost(word, guesses) {
           "|      / \\\n" +
           "|\n" +
           "===========" + " Je hangt, jammer. Je hebt verloren!");
-      return true;
+      gameLost = true;
+      break;
     }
+  return gameLost;
 }
 
 module.exports = {
