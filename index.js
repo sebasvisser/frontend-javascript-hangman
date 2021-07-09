@@ -2,7 +2,7 @@ const { question } = require("readline-sync");
 const { displayWordSoFar, isGameWon, isGameLost } = require("./gamelogic");
 
 function game(word, guesses) {
-  if (guesses.length != 0) {
+  if (guesses.length !== 0) {
     console.log("Deze letters heb je al geprobeerd: ", guesses);
   }
 
@@ -27,7 +27,7 @@ function game(word, guesses) {
         "--------------------                    --------------------";
         console.log(failGraphic);
         console.log(" You had one task..1 letter invoeren. Hoe moeilijk kan het zijn?");
-        console.log(" Doeidoei. We beginnen voor straf HELEMAAL OPNIEUW!");
+        console.log(" Doei doei. We beginnen voor straf HELEMAAL OPNIEUW!");
         game(word, []);
       }
 
