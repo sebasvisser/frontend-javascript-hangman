@@ -11,12 +11,18 @@ function game(word, guesses) {
   }
 
   const letter = question("Raad een letter: ");
+  // voorkomen van zelfde letter nog eens raden.
+  if(guesses.includes(letter)){
+      console.log("Die letter had je al.")
+      game(word, guesses);
+  }
+  const allowedCharacters = "abcdefghijklmnopqrstuvwxyz".split("");
 // controle of input 1 character lang is => anders boos worden
-  if(letter.length === 1) {
+  if(letter.length === 1 && allowedCharacters.includes(letter)) {
 // voeg de geraden letter toe aan de array met guesses,
 // waarbij letter is omgezet naar lowercase.
   guesses.push(letter.toLowerCase());
-    } else { //  indien meerdere letters ingevoerd, afstraffen! ;P
+    } else { //  indien meerdere letters ingevoerd, of niet alfabet afstraffen! ;P
         const failGraphic = "   _______________                        |*\\_/*|________\n" +
         "  |  ___________  |     .-.     .-.      ||_/-\\_|______  |\n" +
         "  | |           | |    .****. .****.     | |           | |\n" +
