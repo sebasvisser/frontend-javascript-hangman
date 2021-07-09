@@ -2,14 +2,35 @@ const { question } = require("readline-sync");
 const { displayWordSoFar, isGameWon, isGameLost } = require("./gamelogic");
 
 function game(word, guesses) {
-  console.log("Dit heb je tot nu toe geraden: ", guesses);
+  if (guesses.length != 0) {
+    console.log("Dit heb je tot nu toe geraden: ", guesses);
+  }
 
   const letter = question("Raad een letter: ");
-
-  // voeg de geraden letter toe aan de array met guesses
-  guesses.push(letter);
-
-  // laat zien hoe het woord er tot nu toe uitziet
+// controle of input 1 character lang is => anders boos worden
+    if(letter.length === 1) {
+// voeg de geraden letter toe aan de array met guesses,
+// waarbij letter is omgezet naar lowercase.
+  guesses.push(letter.toLowerCase());
+    } else {
+      const failGraphic = "   _______________                        |*\\_/*|________\n" +
+      "  |  ___________  |     .-.     .-.      ||_/-\\_|______  |\n" +
+      "  | |           | |    .****. .****.     | |           | |\n" +
+      "  | |   0   0   | |    .*****.*****.     | |   0   0   | |\n" +
+      "  | |     -     | |     .*********.      | |     -     | |\n" +
+      "  | |   \\___/   | |      .*******.       | |   \\___/   | |\n" +
+      "  | |___     ___| |       .*****.        | |___________| |\n" +
+      "  |_____|\\_/|_____|        .***.         |_______________|\n" +
+      "    _|__|/ \\|_|_.............*.............._|________|_\n" +
+      "   / ********** \\                          / ********** \\\n" +
+      " /  ************  \\                      /  ************  \\\n" +
+      "--------------------                    --------------------";
+      console.log(failGraphic);
+      console.log(" You had one task..1 letter invoeren. Hoe moeilijk kan het zijn?");
+      console.log("Doeidoei. We beginnen voor straf HELEMAAL OPNIEUW!");
+      game("javascript", []);
+    }
+// laat zien hoe het woord er tot nu toe uitziet
   console.log(displayWordSoFar(word, guesses));
 
 // als gewonnen => display gewonnen
@@ -20,7 +41,7 @@ function game(word, guesses) {
     return;
   }
   if(isGameLost(word, guesses)){
-    console.log("Verloren, jammer!");
+    console.log("Te vaak een verkeerde letter geraden... Je hebt verloren, jammer!");
     return;
   }
 // volgende ronde! we roepen game nog een keer aan
