@@ -31,10 +31,11 @@ function game(word, guesses) {
         game(word, []);
       }
 
-  const attempts = guesses.length + 1; //pogingen tellen
+    console.clear(); // console opruimen bij nieuwe poging
+    const attempts = guesses.length + 1; //pogingen tellen
   console.log(" ========== Poging " + attempts +  " ==========")
 // laat zien hoe het woord er tot nu toe uitziet
-  console.log("Het te raden woord: " + displayWordSoFar(word, guesses));
+    console.log("Het te raden woord: " + displayWordSoFar(word, guesses));
 
 // als gewonnen => display gewonnen
 // verloren => display verloren
