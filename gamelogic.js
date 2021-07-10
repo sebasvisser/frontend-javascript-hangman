@@ -16,8 +16,7 @@ function displayWordSoFar(word, guesses) {
     }
   }
 // verzamel variabele teruggeven
-  // als string ivm fijner in console.log
-return displayedWord;
+  return displayedWord;
 }
 
 // als een enkele letter van het woord (word[i])
@@ -37,7 +36,7 @@ function isGameLost(word, guesses) {
   let gameLost ;
 // als guesses[i] NIET voorkomt in word, dan wrongGuesses ++
   for (let i = 0; i < guesses.length; i++) {
-    if(!word.includes(guesses[i])){
+    if(!word.includes(guesses[i])) {
       wrongGuesses ++;
     }
   }

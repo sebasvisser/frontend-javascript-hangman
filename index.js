@@ -12,8 +12,9 @@ function game(word, guesses) {
   }
 
   const letter = question("Raad een letter: ");
+
 // voorkomen van zelfde letter nog eens raden.
-  if(guesses.includes(letter)){
+  if(guesses.includes(letter)) {
     console.log("Die letter had je al geprobeerd.")
     game(word, guesses);
   }
@@ -24,7 +25,11 @@ function game(word, guesses) {
     game(word, guesses);
   }
 // controle of input 1 character lang is
-  if(!letter.length === 1) {
+  let guessLength = false;
+  if(letter.length === 1){
+   guessLength = true;
+  }
+  if(!guessLength) {
     console.log("Zou het lukken om je te beperken tot 1 letter?.")
     game(word, guesses);
   }
@@ -44,7 +49,7 @@ function game(word, guesses) {
   } else if(isGameLost(word, guesses)) {
 // verloren => display verloren
     console.log("Te vaak een verkeerde letter geraden... Je hebt verloren, jammer!");
-  } else  {
+  } else {
 // anders game nog een keer aanroepen
     game(word, guesses);
   }
