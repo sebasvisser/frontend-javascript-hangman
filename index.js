@@ -16,9 +16,14 @@ function game(word, guesses) {
       console.log("Die letter had je al.")
       game(word, guesses);
   }
-  const allowedCharacters = "abcdefghijklmnopqrstuvwxyz".split("");
+  //voorkomen gekke tekens
+    const searchLetter= letter.toString();
+    if(!"abcdefghijklmnopqrstuvwxyz".includes(searchLetter)) {
+        console.log("Dat is geen normale letter.")
+        game(word, guesses);
+    }
 // controle of input 1 character lang is => anders boos worden
-  if(letter.length === 1 && allowedCharacters.includes(letter)) {
+  if(letter.length === 1) {
 // voeg de geraden letter toe aan de array met guesses,
 // waarbij letter is omgezet naar lowercase.
   guesses.push(letter.toLowerCase());
