@@ -40,9 +40,7 @@ function game(word, guesses) {
 
   if(isGameWon(word, guesses) === true) {
 // als gewonnen => display gewonnen en reset de controle van input om foutmeldingen te voorkomen.
-//     guessLength = true; // hier ivm issue #2
     console.log("Je hebt gewonnen!");
-    return; // om zeker uit te kunnen stappen
   }
 
   if(isGameLost(word, guesses) === true) {
