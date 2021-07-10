@@ -1,9 +1,6 @@
 const { question } = require("readline-sync");
 const { displayWordSoFar, isGameWon, isGameLost } = require("./gamelogic");
 
-// beginnen met een schone terminal
-console.clear();
-
 function game(word, guesses) {
   if (guesses.length !== 0) {
     const guessesSoFar = guesses.toString();
@@ -29,24 +26,26 @@ function game(word, guesses) {
   if(letter.length === 1){
    guessLength = true;
   }
-  if(!guessLength) {
-    console.log("Zou het lukken om je te beperken tot 1 letter?.")
+  if(guessLength === false) {
+    console.log("Zou het lukken om gewoon 1 letter in te voeren?.")
     game(word, guesses);
   }
 // Letter toevoegen aan guesses (als lowercase)
   guesses.push(letter.toLowerCase());
 // Aantal pogingen tellen
   const attempts = guesses.length + 1;
-// elke poging met lege terminal beginnen
-  console.clear();
   console.log(" ========== Poging " + attempts +  " ==========")
 // laat zien hoe het woord er tot nu toe uitziet
   console.log("Het te raden woord: " + displayWordSoFar(word, guesses));
 
-  if(isGameWon(word, guesses)) {
-// als gewonnen => display gewonnen
+  if(isGameWon(word, guesses) === true) {
+// als gewonnen => display gewonnen en reset de controle van input om foutmeldingen te voorkomen.
+    guessLength = true; // hier ivm issue #2
     console.log("Je hebt gewonnen!");
-  } else if(isGameLost(word, guesses)) {
+    return; // om zeker uit te kunnen stappen
+  }
+
+  if(isGameLost(word, guesses) === true) {
 // verloren => display verloren
     console.log("Te vaak een verkeerde letter geraden... Je hebt verloren, jammer!");
   } else {
