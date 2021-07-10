@@ -27,8 +27,10 @@ function game(word, guesses) {
    guessLength = true;
   }
   if(guessLength === false) {
-    console.log("Zou het lukken om gewoon 1 letter in te voeren?.")
-    game(word, guesses);
+    console.log("Zou het lukken om gewoon 1 letter in te voeren?. \n" +
+        "Zo heeft het geen zin. \n" +
+        "Ik sluit af.")
+  return;
   }
 // Letter toevoegen aan guesses (als lowercase)
   guesses.push(letter.toLowerCase());
