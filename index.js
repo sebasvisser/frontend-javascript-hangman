@@ -1,5 +1,5 @@
 const { question } = require("readline-sync");
-const { displayWordSoFar, isGameWon, isGameLost } = require("./gamelogic");
+const { displayWordSoFar, isGameWon, isGameLost, wrongGuesses } = require("./gamelogic");
 
 function game(word, guesses) {
   if (guesses.length !== 0) {
@@ -10,42 +10,50 @@ function game(word, guesses) {
 
   const letter = question("Raad een letter: ");
 
-// voorkomen van zelfde letter nog eens raden.
-  if(guesses.includes(letter)) {
-    console.log("Die letter had je al geprobeerd.")
-    game(word, guesses);
-  }
-//voorkomen gekke tekens
+// Controle van input
+// opzet nodige variabele
+  // input als string waarde
   const searchLetter = letter.toString();
-  if(!"abcdefghijklmnopqrstuvwxyz".includes(searchLetter)) {
-    console.log("Dat is geen normale letter.\n Zo heeft het geen zin. \n  Ik sluit af.")
-    return;
-  }
-// controle of input 1 character lang is
+  // lengte van input als boolean (1 = ja)
   let guessLength = false;
   if(letter.length === 1){
-   guessLength = true;
+    guessLength = true;
   }
-  if(guessLength === false) {
+// controle van input
+  // Controle input letter niet al geprobeerd.
+  if(guesses.includes(letter)) {
+    console.log("Die letter had je al geprobeerd. \n Probeer het opnieuw.")
+    game(word, guesses);
+  // Controle of input = normale letter
+  }else if(!"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(searchLetter)) {
+    console.log("Dat is geen normale letter.\n Zo heeft het geen zin. \n  Probeer het opnieuw.")
+    game(word, guesses);
+  // Controle of input is 1 lang
+  }else if(guessLength === false) {
     console.log("Zou het lukken om gewoon 1 letter in te voeren?. \n" +
         "Zo heeft het geen zin. \n" +
-        "Ik sluit af.")
-  return;
+        "Probeer het opnieuw.");
+    game(word, guesses);
+  } else {
+  // Letter toevoegen aan guesses (als lowercase)
+    guesses.push(letter.toLowerCase());
   }
-// Letter toevoegen aan guesses (als lowercase)
-  guesses.push(letter.toLowerCase());
+
 // Aantal pogingen tellen
   const attempts = guesses.length + 1;
   console.log(" ========== Poging " + attempts +  " ==========")
 // laat zien hoe het woord er tot nu toe uitziet
   console.log("Het te raden woord: " + displayWordSoFar(word, guesses));
 
-  if(isGameWon(word, guesses) === true) {
-// als gewonnen => display gewonnen en reset de controle van input om foutmeldingen te voorkomen.
-    console.log("Je hebt gewonnen!");
-  }
+// extra exit bij 7 fouten
+if (wrongGuesses >= 7){
+  return;
+}
 
-  if(isGameLost(word, guesses) === true) {
+  if(isGameWon(word, guesses) === true) {
+// als gewonnen => display gewonnen
+    console.log("Je hebt gewonnen!");
+  } else if(isGameLost(word, guesses) === true) {
 // verloren => display verloren
     console.log("Te vaak een verkeerde letter geraden... Je hebt verloren, jammer!");
   } else {
@@ -54,16 +62,14 @@ function game(word, guesses) {
   }
 }
 
-// console.log(`
-// __________
-// | /     |    ░██████╗░░█████╗░██╗░░░░░░██████╗░░░░░░██╗███████╗
-// |/     _o_   ██╔════╝░██╔══██╗██║░░░░░██╔════╝░░░░░░██║██╔════╝
-// |       O    ██║░░██╗░███████║██║░░░░░██║░░██╗░░░░░░██║█████╗░░
-// |      / \\   ██║░░╚██╗██╔══██║██║░░░░░██║░░╚██╗██╗░░██║██╔══╝░░
-// |            ╚██████╔╝██║░░██║███████╗╚██████╔╝╚█████╔╝███████╗
-// ===========  ░╚═════╝░╚═╝░░╚═╝╚══════╝░╚═════╝░░╚════╝░╚══════╝
-// `);
-
-console.log("__________  \n| /     |    ░██████╗░░█████╗░██╗░░░░░░██████╗░░░░░░██╗███████╗\n|/     _o_   ██╔════╝░██╔══██╗██║░░░░░██╔════╝░░░░░░██║██╔════╝\n|       O    ██║░░██╗░███████║██║░░░░░██║░░██╗░░░░░░██║█████╗░░\n|      / \\   ██║░░╚██╗██╔══██║██║░░░░░██║░░╚██╗██╗░░██║██╔══╝░░\n|            ╚██████╔╝██║░░██║███████╗╚██████╔╝╚█████╔╝███████╗\n===========  ░╚═════╝░╚═╝░░╚═╝╚══════╝░╚═════╝░░╚════╝░╚══════╝")
+console.log(`
+__________
+| /     |    ░██████╗░░█████╗░██╗░░░░░░██████╗░░░░░░██╗███████╗
+|/     _o_   ██╔════╝░██╔══██╗██║░░░░░██╔════╝░░░░░░██║██╔════╝
+|       O    ██║░░██╗░███████║██║░░░░░██║░░██╗░░░░░░██║█████╗░░
+|      / \\   ██║░░╚██╗██╔══██║██║░░░░░██║░░╚██╗██╗░░██║██╔══╝░░
+|            ╚██████╔╝██║░░██║███████╗╚██████╔╝╚█████╔╝███████╗
+===========  ░╚═════╝░╚═╝░░╚═╝╚══════╝░╚═════╝░░╚════╝░╚══════╝
+`);
 
 game("javascript", []);
