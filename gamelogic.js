@@ -33,6 +33,7 @@ function isGameWon(word, guesses) {
 function isGameLost(word, guesses) {
 // teller verkeerde letters aanmaken
   let wrongGuesses = 0;
+// variabele om terug te geven
   let gameLost ;
 // als guesses[i] NIET voorkomt in word, dan wrongGuesses ++
   for (let i = 0; i < guesses.length; i++) {

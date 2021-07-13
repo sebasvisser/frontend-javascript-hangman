@@ -1,5 +1,5 @@
 const { question } = require("readline-sync");
-const { displayWordSoFar, isGameWon, isGameLost, wrongGuesses } = require("./gamelogic");
+const { displayWordSoFar, isGameWon, isGameLost } = require("./gamelogic");
 
 function game(word, guesses) {
   if (guesses.length !== 0) {
@@ -44,11 +44,6 @@ function game(word, guesses) {
   console.log(" ========== Poging " + attempts +  " ==========")
 // laat zien hoe het woord er tot nu toe uitziet
   console.log("Het te raden woord: " + displayWordSoFar(word, guesses));
-
-// extra exit bij 7 fouten
-if (wrongGuesses >= 7){
-  return;
-}
 
   if(isGameWon(word, guesses) === true) {
 // als gewonnen => display gewonnen
