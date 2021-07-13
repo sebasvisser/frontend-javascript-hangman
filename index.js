@@ -10,7 +10,7 @@ function game(word, guesses) {
 
   const letter = question("Raad een letter: ");
 
-// Controle van input
+// Controles van input
 // opzet nodige variabele
   // input als string waarde
   const searchLetter = letter.toString();
@@ -19,7 +19,7 @@ function game(word, guesses) {
   if(letter.length === 1){
     guessLength = true;
   }
-// controle van input
+// uitvoering controles
   // Controle input letter niet al geprobeerd.
   if(guesses.includes(letter)) {
     console.log("Die letter had je al geprobeerd. \n Probeer het opnieuw.")

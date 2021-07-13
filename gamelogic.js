@@ -22,12 +22,13 @@ function displayWordSoFar(word, guesses) {
 // als een enkele letter van het woord (word[i])
 // NIET voorkomt in guesses, dan return false, anders true.
 function isGameWon(word, guesses) {
+  let gameWin = true;
   for (let i = 0; i < word.length; i++) {
     if (!guesses.includes(word[i])) {
-      return false;
+      gameWin = false;
     }
   }
-  return true;
+  return gameWin;
 }
 
 function isGameLost(word, guesses) {
